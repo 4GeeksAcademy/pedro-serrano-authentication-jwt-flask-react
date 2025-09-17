@@ -1,0 +1,18 @@
+:root{
+  --accept: #3b6e57;  /* verde apagado */
+  --cancel: #9e4a4a;  /* rojo apagado */
+}
+
+.btn-accept {
+  background-color: var(--accept);
+  border-color: var(--accept);
+  color: #fff;
+}
+.btn-accept:hover { filter: brightness(0.95); }
+
+.btn-cancel {
+  background-color: var(--cancel);
+  border-color: var(--cancel);
+  color: #fff;
+}
+.btn-cancel:hover { filter: brightness(0.95); }
