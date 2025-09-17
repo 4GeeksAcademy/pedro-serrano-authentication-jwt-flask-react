@@ -2,8 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Importante: asegúrate de haber importado el JS de Bootstrap en tu punto de entrada
-// (main.jsx/index.jsx): import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// Base URL del backend (definida en el .env del front como VITE_BACKEND_URL)
+const API = import.meta.env.VITE_BACKEND_URL || "";
+
+// Importante: asegúrate de tener importado el JS de Bootstrap en tu entry file
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 export const Private = () => {
     const navigate = useNavigate();
@@ -20,7 +23,7 @@ export const Private = () => {
         // Llamada a /api/private con Bearer token
         const fetchPrivate = async () => {
             try {
-                const resp = await fetch("/api/private", {
+                const resp = await fetch(`${API}/api/private`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const data = await resp.json();
@@ -49,58 +52,63 @@ export const Private = () => {
     if (!token) return null; // Protección extra (ya redirige el useEffect)
 
     return (
-        <div className="container py-5">
-            <div className="row justify-content-center">
-                <div className="col-12 col-md-8 col-lg-6">
-                    <div className="card shadow-sm">
-                        <div className="card-body p-4 text-center">
-                            <h2 className="mb-3">Private</h2>
-                            <p className="mb-4">{message}</p>
+        // Envoltorio a pantalla completa con tema oscuro
+        <div className="min-vh-100 bg-dark text-light d-flex align-items-center">
+            <div className="container py-5">
+                <div className="row justify-content-center">
+                    <div className="col-12 col-md-8 col-lg-6">
+                        {/* Card adaptada a tema oscuro */}
+                        <div className="card bg-secondary-subtle border-0 shadow-sm">
+                            <div className="card-body p-4 text-center">
+                                <h2 className="mb-3 text-dark">Private</h2>
+                                <p className="mb-4 text-dark">{message}</p>
 
-                            {/* Botón que abre el modal de confirmación */}
-                            <button
-                                className="btn btn-cancel px-4"
-                                data-bs-toggle="modal"
-                                data-bs-target="#logoutModal"
-                            >
-                                Log out
-                            </button>
+                                {/* Botón que abre el modal de confirmación */}
+                                <button
+                                    className="btn btn-cancel px-4"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#logoutModal"
+                                >
+                                    Log out
+                                </button>
 
-                            {/* Modal Bootstrap */}
-                            <div
-                                className="modal fade"
-                                id="logoutModal"
-                                tabIndex="-1"
-                                aria-labelledby="logoutModalLabel"
-                                aria-hidden="true"
-                            >
-                                <div className="modal-dialog modal-dialog-centered">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title" id="logoutModalLabel">Confirm logout</h5>
-                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div className="modal-body">
-                                            You are about to log out. You will lose your access token and will need to log in again.
-                                        </div>
-                                        <div className="modal-footer">
-                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-                                                Cancel
-                                            </button>
-                                            <button
-                                                type="button"
-                                                className="btn btn-cancel"
-                                                data-bs-dismiss="modal"
-                                                onClick={confirmLogout}
-                                            >
-                                                Confirm logout
-                                            </button>
+                                {/* Modal Bootstrap */}
+                                <div
+                                    className="modal fade"
+                                    id="logoutModal"
+                                    tabIndex="-1"
+                                    aria-labelledby="logoutModalLabel"
+                                    aria-hidden="true"
+                                >
+                                    <div className="modal-dialog modal-dialog-centered">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title" id="logoutModalLabel">Confirm logout</h5>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div className="modal-body">
+                                                You are about to log out. You will lose your access token and will need to log in again.
+                                            </div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-cancel"
+                                                    data-bs-dismiss="modal"
+                                                    onClick={confirmLogout}
+                                                >
+                                                    Confirm logout
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                {/* Fin modal */}
                             </div>
-                            {/* Fin modal */}
                         </div>
+                        {/* Fin card */}
                     </div>
                 </div>
             </div>

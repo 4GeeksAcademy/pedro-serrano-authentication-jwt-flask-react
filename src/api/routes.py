@@ -10,6 +10,8 @@ from flask_cors import CORS
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import datetime
 
+from flask_bcrypt import Bcrypt
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -47,7 +49,8 @@ def signup():
     # (Flask-Bcrypt registra la extensión en current_app.extensions['bcrypt'])
     bcrypt = current_app.extensions.get("bcrypt")
     if bcrypt is None:
-        return jsonify({"msg": "Server bcrypt not configured."}), 500
+        # Fallback seguro: inicializa con la app actual si por orden de carga aún no está registrado
+        bcrypt = Bcrypt(current_app)
 
     # Hashear la contraseña con bcrypt y guardar el usuario
     password_hash = bcrypt.generate_password_hash(password).decode("utf-8")
@@ -85,15 +88,19 @@ def login():
     if not user:
         return jsonify({"msg": "Invalid credentials."}), 401
 
+    # Obtener instancia de bcrypt desde la app ya inicializada
     bcrypt = current_app.extensions.get("bcrypt")
     if bcrypt is None:
-        return jsonify({"msg": "Server bcrypt not configured."}), 500
+        # Fallback seguro en caso de que no esté registrado aún
+        bcrypt = Bcrypt(current_app)
 
-    # En el bloque de abajo se verifica la contraseña, usando la funcion check_password_hash de bcrypt en la que...
-    # ...el primer parametro es la contraseña hasheada y el segundo la contraseña en texto plano que se recibe en el login
+    # Verificar la contraseña usando bcrypt:
+    # - primer parámetro: contraseña hasheada almacenada en la BD
+    # - segundo parámetro: contraseña en texto plano recibida en el login
     if not bcrypt.check_password_hash(user.password, password):
         return jsonify({"msg": "Invalid credentials."}), 401
 
+    # Emitir token (duración 10 minutos)
     expires = datetime.timedelta(minutes=10)
     access_token = create_access_token(identity=user.id, expires_delta=expires)
 
@@ -108,17 +115,17 @@ def login():
 @api.route('/private', methods=['GET'])
 @jwt_required()
 def private():
-    
+
     # Ruta protegida con JWT:
     # - Requiere header Authorization: Bearer <token>
     # - Si el token es válido, devolvemos un mensaje y datos públicos del usuario.
-    
+
     user_id = get_jwt_identity()
     user = User.query.get(user_id)
-    
+
     if not user:
         return jsonify({"msg": "User not found."}), 404
-    
+
     return jsonify({
         "msg": f"You are authenticated as {user.email}.",
         "user": user.serialize()
