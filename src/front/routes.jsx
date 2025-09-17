@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";     // NUEVO
-import { Signup } from "./pages/Signup";   // NUEVO
-import { Private } from "./pages/Private"; // NUEVO
+import { Login } from "./pages/Login";
+import { Signup } from "./pages/Signup";
+import { Private } from "./pages/Private";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(

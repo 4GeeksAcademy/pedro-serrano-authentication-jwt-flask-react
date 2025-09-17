@@ -9,17 +9,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const Main = () => {
-    
-    if(! import.meta.env.VITE_BACKEND_URL ||  import.meta.env.VITE_BACKEND_URL == "") return (
+
+    if (! import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_BACKEND_URL == "") return (
         <React.StrictMode>
-              <BackendURL/ >
+            <BackendURL />
         </React.StrictMode>
-        );
+    );
     return (
-        <React.StrictMode>  
+        <React.StrictMode>
             {/* Provide global state to all components */}
-            <StoreProvider> 
-                {/* Set up routing for the application */} 
+            <StoreProvider>
+                {/* Set up routing for the application */}
                 <RouterProvider router={router}>
                 </RouterProvider>
             </StoreProvider>
@@ -28,4 +28,10 @@ const Main = () => {
 }
 
 // Render the Main component into the root DOM element.
-ReactDOM.createRoot(document.getElementById('root')).render(<Main />)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <StoreProvider>
+      <RouterProvider router={router} />
+    </StoreProvider>
+  </React.StrictMode>
+);
