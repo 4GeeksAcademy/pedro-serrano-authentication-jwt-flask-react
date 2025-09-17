@@ -52,7 +52,7 @@ CORS(app)
 # Instanciamos el gestor de JWT
 jwt = JWTManager(app)
 
-# Bcrypt (para hashear contraseñas en el servidor)
+# Para hashear contraseñas en el servidor
 bcrypt = Bcrypt(app)
 
 
