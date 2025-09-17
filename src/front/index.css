@@ -1,18 +1,60 @@
 :root{
-  --accept: #3b6e57;  /* verde apagado */
-  --cancel: #9e4a4a;  /* rojo apagado */
+  /* Colores base del tema */
+  --bg-app: #121417;      /* fondo de la app (oscuro) */
+  --surface: #1a1f24;     /* fondo de las cards (un poco más claro que el fondo) */
+  --surface-2: #20262c;   /* fondo de inputs */
+  --text: #e9ecef;        /* texto principal */
+  --muted: #a3adb6;       /* texto secundario/suave */
+  --border: #2b3238;      /* borde suave */
+
+  /* Botones con colores sobrios */
+  --accept: #3b6e57;      /* verde apagado */
+  --accept-hover: #335d4b;
+  --cancel: #8b3d3d;      /* rojo apagado */
+  --cancel-hover: #7a3535;
 }
 
+/* Fondo oscuro global */
+.app-dark {
+  background-color: var(--bg-app) !important;
+  color: var(--text) !important;
+}
+
+/* Superficie de card  */
+.card-surface {
+  background-color: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0.75rem;
+}
+
+/* Etiquetas y textos secundarios dentro de cards */
+.card-surface .form-label,
+.card-surface .text-muted,
+.card-surface small {
+  color: var(--muted) !important;
+}
+
+/* Inputs */
+.input-dark {
+  background-color: var(--surface-2) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+.input-dark::placeholder { color: #949ca5 !important; }
+
+/* Botón aceptar */
 .btn-accept {
-  background-color: var(--accept);
-  border-color: var(--accept);
-  color: #fff;
+  background-color: var(--accept) !important;
+  border-color: var(--accept) !important;
+  color: #fff !important;
 }
-.btn-accept:hover { filter: brightness(0.95); }
+.btn-accept:hover { background-color: var(--accept-hover) !important; }
 
+/* Botón cancelar */
 .btn-cancel {
-  background-color: var(--cancel);
-  border-color: var(--cancel);
-  color: #fff;
+  background-color: var(--cancel) !important;
+  border-color: var(--cancel) !important;
+  color: #fff !important;
 }
-.btn-cancel:hover { filter: brightness(0.95); }
+.btn-cancel:hover { background-color: var(--cancel-hover) !important; }

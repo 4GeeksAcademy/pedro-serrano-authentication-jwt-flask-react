@@ -42,25 +42,23 @@ export const Signup = () => {
     };
 
     return (
-        // Envoltorio a pantalla completa con tema oscuro y texto claro
-        <div className="min-vh-100 bg-dark text-light d-flex align-items-center">
+        <div className="min-vh-100 app-dark d-flex align-items-center">
             <div className="container py-5">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-6 col-lg-5">
-                        {/* Card adaptada a tema oscuro */}
-                        <div className="card bg-secondary-subtle border-0 shadow-sm">
+                        <div className="card card-surface shadow-sm">
                             <div className="card-body p-4">
-                                <h2 className="mb-3 text-center text-dark">Sign up</h2>
+                                <h2 className="mb-3 text-center">Sign up</h2>
 
                                 {error && <div className="alert alert-danger">{error}</div>}
 
                                 <form onSubmit={handleSubmit}>
                                     <div className="mb-3">
-                                        <label className="form-label text-dark">Email</label>
+                                        <label className="form-label">Email</label>
                                         <input
                                             type="email"
-                                            className="form-control bg-dark text-light border-secondary"
-                                            placeholder="your@email.com"
+                                            className="form-control input-dark"
+                                            placeholder="yourown@madeupemail.com"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             required
@@ -68,25 +66,25 @@ export const Signup = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="form-label text-dark">Password</label>
+                                        <label className="form-label">Password</label>
                                         <input
                                             type="password"
-                                            className="form-control bg-dark text-light border-secondary"
-                                            placeholder="Choose a strong password"
+                                            className="form-control input-dark"
+                                            placeholder="Your password will be encrypted in the database."
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             required
                                         />
                                     </div>
 
-                                    {/* Botón sobrio y bien contrastado */}
-                                    <button type="submit" className="btn btn-secondary w-100">
+                                    {/* Botón aceptar (verde sobrio) */}
+                                    <button type="submit" className="btn btn-accept w-100">
                                         Create account
                                     </button>
                                 </form>
 
                                 <div className="text-center mt-3">
-                                    <small className="text-dark">
+                                    <small>
                                         Already have an account? <Link to="/login">Log in</Link>
                                     </small>
                                 </div>

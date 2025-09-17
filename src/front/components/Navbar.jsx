@@ -1,6 +1,6 @@
+// src/front/components/Navbar.jsx
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 
 export const Navbar = () => {
 	const navigate = useNavigate();
@@ -29,10 +29,14 @@ export const Navbar = () => {
 	};
 
 	return (
-		<nav className="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+		<nav className="navbar navbar-expand-lg navbar-dark border-bottom" style={{ backgroundColor: "var(--surface)" }}>
 			<div className="container">
-				<Link className="navbar-brand" to="/">JWT Authentication example project by Pedro Serrano Camblor</Link>
+				{/* Brand / Home */}
+				<Link className="navbar-brand fw-bold" to="/" style={{ color: "var(--text)" }}>
+					Home
+				</Link>
 
+				{/* Toggle para vista móvil */}
 				<button
 					className="navbar-toggler"
 					type="button"
@@ -47,11 +51,12 @@ export const Navbar = () => {
 
 				<div className="collapse navbar-collapse" id="navMain">
 					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-						
 						{/* Enlace a Private visible solo si hay token */}
 						{hasToken && (
 							<li className="nav-item">
-								<Link className="nav-link" to="/private">Private</Link>
+								<Link className="nav-link" to="/private" style={{ color: "var(--text)" }}>
+									Private area
+								</Link>
 							</li>
 						)}
 					</ul>
@@ -60,8 +65,12 @@ export const Navbar = () => {
 						{!hasToken ? (
 							<>
 								{/* Sin token: mostrar Log in / Sign up */}
-								<Link to="/login" className="btn btn-accept">Log in</Link>
-								<Link to="/signup" className="btn btn-secondary">Sign up</Link>
+								<Link to="/login" className="btn btn-accept">
+									Log in
+								</Link>
+								<Link to="/signup" className="btn btn-secondary">
+									Sign up
+								</Link>
 							</>
 						) : (
 							// Con token: mostrar Log out

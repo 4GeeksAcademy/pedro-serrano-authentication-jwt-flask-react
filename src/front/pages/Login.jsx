@@ -27,7 +27,6 @@ export const Login = () => {
             const data = await resp.json();
 
             if (!resp.ok) {
-                // Mensaje de error del backend (401, 400, etc.)
                 setError(data?.msg || "Login failed.");
                 return;
             }
@@ -43,24 +42,22 @@ export const Login = () => {
     };
 
     return (
-        // Envoltorio a pantalla completa con tema oscuro
-        <div className="min-vh-100 bg-dark text-light d-flex align-items-center">
+        <div className="min-vh-100 app-dark d-flex align-items-center">
             <div className="container py-5">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-6 col-lg-5">
-                        {/* Card adaptada a tema oscuro */}
-                        <div className="card bg-secondary-subtle border-0 shadow-sm">
+                        <div className="card card-surface shadow-sm">
                             <div className="card-body p-4">
-                                <h2 className="mb-3 text-center text-dark">Log in</h2>
+                                <h2 className="mb-3 text-center">Log in</h2>
 
                                 {error && <div className="alert alert-danger">{error}</div>}
 
                                 <form onSubmit={handleSubmit}>
                                     <div className="mb-3">
-                                        <label className="form-label text-dark">Email</label>
+                                        <label className="form-label">Email</label>
                                         <input
                                             type="email"
-                                            className="form-control bg-dark text-light border-secondary"
+                                            className="form-control input-dark"
                                             placeholder="your@email.com"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
@@ -69,10 +66,10 @@ export const Login = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <label className="form-label text-dark">Password</label>
+                                        <label className="form-label">Password</label>
                                         <input
                                             type="password"
-                                            className="form-control bg-dark text-light border-secondary"
+                                            className="form-control input-dark"
                                             placeholder="••••••••"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
@@ -80,14 +77,14 @@ export const Login = () => {
                                         />
                                     </div>
 
-                                    {/* Botón bien contrastado (usa tu color sobrio de aceptar) */}
+                                    {/* Botón aceptar (verde sobrio) */}
                                     <button type="submit" className="btn btn-accept w-100">
                                         Log in
                                     </button>
                                 </form>
 
                                 <div className="text-center mt-3">
-                                    <small className="text-dark">
+                                    <small>
                                         Don’t have an account? <Link to="/signup">Sign up</Link>
                                     </small>
                                 </div>

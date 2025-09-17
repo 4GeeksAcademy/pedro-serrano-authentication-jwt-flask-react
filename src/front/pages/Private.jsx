@@ -52,16 +52,14 @@ export const Private = () => {
     if (!token) return null; // Protección extra (ya redirige el useEffect)
 
     return (
-        // Envoltorio a pantalla completa con tema oscuro
-        <div className="min-vh-100 bg-dark text-light d-flex align-items-center">
+        <div className="min-vh-100 app-dark d-flex align-items-center">
             <div className="container py-5">
                 <div className="row justify-content-center">
                     <div className="col-12 col-md-8 col-lg-6">
-                        {/* Card adaptada a tema oscuro */}
-                        <div className="card bg-secondary-subtle border-0 shadow-sm">
+                        <div className="card card-surface shadow-sm">
                             <div className="card-body p-4 text-center">
-                                <h2 className="mb-3 text-dark">Private</h2>
-                                <p className="mb-4 text-dark">{message}</p>
+                                <h2 className="mb-3">This is a Private area</h2>
+                                <p className="mb-4">{message}</p>
 
                                 {/* Botón que abre el modal de confirmación */}
                                 <button
@@ -72,7 +70,7 @@ export const Private = () => {
                                     Log out
                                 </button>
 
-                                {/* Modal Bootstrap */}
+                                {/* Modal Bootstrap con el mismo tema de card */}
                                 <div
                                     className="modal fade"
                                     id="logoutModal"
@@ -81,7 +79,7 @@ export const Private = () => {
                                     aria-hidden="true"
                                 >
                                     <div className="modal-dialog modal-dialog-centered">
-                                        <div className="modal-content">
+                                        <div className="modal-content card-surface">
                                             <div className="modal-header">
                                                 <h5 className="modal-title" id="logoutModalLabel">Confirm logout</h5>
                                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

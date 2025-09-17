@@ -60,7 +60,7 @@ def signup():
 
     # Emitir token (duración 10 minutos)
     expires = datetime.timedelta(minutes=10)
-    access_token = create_access_token(identity=user.id, expires_delta=expires)
+    access_token = create_access_token(identity=str(user.id), expires_delta=expires)
 
     return jsonify({
         "msg": "User created successfully.",
@@ -102,7 +102,7 @@ def login():
 
     # Emitir token (duración 10 minutos)
     expires = datetime.timedelta(minutes=10)
-    access_token = create_access_token(identity=user.id, expires_delta=expires)
+    access_token = create_access_token(identity=str(user.id), expires_delta=expires)
 
     return jsonify({
         "msg": "Login successful.",
@@ -121,12 +121,12 @@ def private():
     # - Si el token es válido, devolvemos un mensaje y datos públicos del usuario.
 
     user_id = get_jwt_identity()
-    user = User.query.get(user_id)
+    user = User.query.get(int(user_id))
 
     if not user:
         return jsonify({"msg": "User not found."}), 404
 
     return jsonify({
-        "msg": f"You are authenticated as {user.email}.",
+        "msg": f"You are authenticated as {user.email}. This has given you access to the private route. You can now navigate between Home and Private area with your token. When you log out (or after 10 minutes), this token will be revoked and you will no longer be able to access this route unless you log in again. Thank you for using this example project!",
         "user": user.serialize()
     }), 200
