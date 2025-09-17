@@ -17,7 +17,23 @@ export const Home = () => {
 								<h5 className="mb-4">
 									This exercise demonstrates how to implement a JWT authentication system using React JS and Flask. Use the navigation bar to move through the app.
 								</h5>
-								<p>Created with &#10084; by Pedro Serrano Camblor</p>
+								<p style={{ textAlign: "center", color: "var(--text)" }}>
+									Created with{" "}
+									<span className="heart red" role="img" aria-label="heart">
+										&#10084;&#65039;
+									</span>{" "}
+									by{" "}
+									<strong>
+										<a
+											href="https://www.linkedin.com/in/pedroserranoc/"
+											target="_blank"
+											rel="noopener noreferrer"
+											style={{ color: "dodgerblue", textDecoration: "underline" }}
+										>
+											Pedro Serrano Camblor
+										</a>
+									</strong>
+								</p>
 
 								{/* Solo mostramos el mensaje si existe */}
 								{store.message && (

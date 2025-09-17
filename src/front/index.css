@@ -1,16 +1,16 @@
-:root{
+:root {
   /* Colores base del tema */
-  --bg-app: #121417;      /* fondo de la app (oscuro) */
-  --surface: #1a1f24;     /* fondo de las cards (un poco más claro que el fondo) */
-  --surface-2: #20262c;   /* fondo de inputs */
-  --text: #e9ecef;        /* texto principal */
-  --muted: #a3adb6;       /* texto secundario/suave */
-  --border: #2b3238;      /* borde suave */
+  --bg-app: #121417; /* fondo de la app (oscuro) */
+  --surface: #1a1f24; /* fondo de las cards (un poco más claro que el fondo) */
+  --surface-2: #20262c; /* fondo de inputs */
+  --text: #e9ecef; /* texto principal */
+  --muted: #a3adb6; /* texto secundario/suave */
+  --border: #2b3238; /* borde suave */
 
   /* Botones con colores sobrios */
-  --accept: #3b6e57;      /* verde apagado */
+  --accept: #3b6e57; /* verde apagado */
   --accept-hover: #335d4b;
-  --cancel: #8b3d3d;      /* rojo apagado */
+  --cancel: #8b3d3d; /* rojo apagado */
   --cancel-hover: #7a3535;
 }
 
@@ -41,7 +41,9 @@
   color: var(--text) !important;
   border: 1px solid var(--border) !important;
 }
-.input-dark::placeholder { color: #949ca5 !important; }
+.input-dark::placeholder {
+  color: #949ca5 !important;
+}
 
 /* Botón aceptar */
 .btn-accept {
@@ -49,7 +51,9 @@
   border-color: var(--accept) !important;
   color: #fff !important;
 }
-.btn-accept:hover { background-color: var(--accept-hover) !important; }
+.btn-accept:hover {
+  background-color: var(--accept-hover) !important;
+}
 
 /* Botón cancelar */
 .btn-cancel {
@@ -57,4 +61,37 @@
   border-color: var(--cancel) !important;
   color: #fff !important;
 }
-.btn-cancel:hover { background-color: var(--cancel-hover) !important; }
+.btn-cancel:hover {
+  background-color: var(--cancel-hover) !important;
+}
+
+.heart {
+  display: inline-block;
+  transform-origin: center;
+  animation: heart-beat 1.5s ease-in-out infinite;
+}
+
+.heart.red {
+  color: #e25555;
+}
+
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.3);
+  }
+  20% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
